@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photo Post Wall</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .upload-box {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    input[type="file"] {
+      margin: 10px 0;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #388E3C;
+    }
+
+    .gallery {
+      max-width: 900px;
+      margin: 30px auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 250px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .home-btn {
+      display: block;
+      width: fit-content;
+      margin: 40px auto 0;
+      padding: 10px 20px;
+      text-decoration: none;
+      background: #007bff;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .home-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📸 Share Your Photos</h2>
+
+  <div class="upload-box">
+    <input type="file" id="imageUpload" accept="image/*" />
+    <br>
+    <button onclick="uploadImage()">Upload Image</button>
+    <p id="msg" style="color: green; margin-top: 10px;"></p>
+  </div>
+
+  <div class="gallery" id="gallery"></div>
+
+  <a href="show.html" class="home-btn">🏠 Back to Home</a>
+
+  <script>
+    const imageInput = document.getElementById('imageUpload');
+    const gallery = document.getElementById('gallery');
+    const msg = document.getElementById('msg');
+
+    // Load existing images from localStorage
+    function loadImages() {
+      const images = JSON.parse(localStorage.getItem('userImages')) || [];
+      gallery.innerHTML = '';
+
+      images.forEach(imgData => {
+        const img = document.createElement('img');
+        img.src = imgData;
+        gallery.appendChild(img);
+      });
+    }
+
+    function uploadImage() {
+      const file = imageInput.files[0];
+      if (!file) {
+        msg.textContent = "⚠️ Please select an image to upload.";
+        msg.style.color = "red";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const imgData = e.target.result;
+
+        let images = JSON.parse(localStorage.getItem('userImages')) || [];
+        images.push(imgData);
+        localStorage.setItem('userImages', JSON.stringify(images));
+
+        msg.textContent = "✅ Image uploaded successfully!";
+        msg.style.color = "green";
+        loadImages();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // On page load
+    loadImages();
+  </script>
+
+</body>
+</html>

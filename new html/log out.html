@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Logout Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ff6e7f, #bfe9ff);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    .box {
+      background-color: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      text-align: center;
+      margin: 20px;
+      width: 350px;
+      max-width: 90%;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #ff3700;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #007777;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Logged Out Box -->
+    <div class="box">
+      <h1>🚪 You Have Logged Out</h1>
+      <p>You are now logged out of your account.</p>
+      <a href="login.html">🔐 Login Again</a>
+    </div>
+
+    <!-- Stay Logged In Box -->
+    <div class="box">
+      <h1>🔒 Stay Logged In?</h1>
+      <p>Clicked by mistake? Return to your dashboard.</p>
+      <a href="show.html">🏠 Stay Logged In</a>
+    </div>
+  </div>
+
+</body>
+</html>
